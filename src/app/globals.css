@@ -186,3 +186,23 @@ body {
 .prose-measure {
   max-width: 68ch;
 }
+
+/* View Transition API rules for Celestial Theme Transition.
+   Overrides browser default cross-fade so the circular expansion from center takes control. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
