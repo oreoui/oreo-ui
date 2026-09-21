@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OreoUI Starter Kits
 
-## Getting Started
+Agentic UI kits for AI interfaces: Figma-parity primitives, agent surfaces, and the full
+state vocabulary that conventional UI kits leave out.
 
-First, run the development server:
+[![OreoUI Starter Kits](./public/brand/oreoui-lockup.png)](https://github.com/oreoui)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Kits
+
+**Starter Kits** is the product line. Each kit ships the same token layer and the same
+primitive contract, so a design can graduate between them without rework.
+
+| Kit | Contents | Status |
+| --- | --- | --- |
+| **OreoUI Starter Kit: Foundations** | Colour, typography, elevation, radius, space and icon documentation as runnable code | Shipped |
+| **OreoUI Starter Kit: Primitives** | Button, IconButton, Chip, Tag, Avatar, Loading, ShortcutKey, ImageGrid, Card, Dropdown, Timeline, FormInput | Shipped |
+| **OreoUI Starter Kit: Agent** | Prompt composer, sidebar, top nav, pop-up, model select, chat container, thought chain, markdown + media rendering | Shipped |
+| **OreoUI Starter Kit: Pro** | Remaining agent states across the full Figma set | In progress |
+
+## What is in this repo
+
+```
+src/
+  app/                     routes and the token layer (globals.css)
+  components/ui/           primitives, one folder, one contract
+  components/agent/        composites built on the primitives
+  lib/                     shared helpers
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Figma is the contract.** Component doc comments cite the Figma node they mirror, so
+  parity is checkable rather than a matter of opinion.
+- **Primitives compose.** Composites never re-implement a button, a spinner, or a control.
+- **Tokens, not literals.** Colour, elevation and interaction fills resolve through
+  `--oreo-*` custom properties; one class string works in both themes.
+- **Full states or it does not ship.** default, hover, press, focus-visible, disabled,
+  loading, error, empty.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Getting started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+bun install
+bun run dev          # app on http://localhost:3000
+bun run storybook    # component docs on http://localhost:6006
+bun run build        # production build
+bun run lint
+```
 
-## Learn More
+## Docs
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Storybook is the component documentation: `Primitives/*`, `Agent components/*`,
+`Foundations/*`. `DESIGN.md` and `PRODUCT.md` hold the design laws and product intent that
+the code is held to.

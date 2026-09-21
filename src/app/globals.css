@@ -1,26 +1,188 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Dark mode is class/attribute driven (see the bootstrap script in layout.tsx),
+   not prefers-color-scheme, so the theme is explicit and toggleable. */
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* Overlay interaction fills.
+   Figma stacks a translucent Hover/Press fill over the component's base colour. These
+   utilities express that as a background-image layer, so hover/press never overwrites the
+   element's box-shadow elevation (the previous inset-shadow hack did). */
+@utility oreo-fill-hover {
+  background-image: linear-gradient(var(--oreo-interaction-hover), var(--oreo-interaction-hover));
+}
+@utility oreo-fill-press {
+  background-image: linear-gradient(var(--oreo-interaction-press), var(--oreo-interaction-press));
+}
+@utility oreo-fill-hover-inverse {
+  background-image: linear-gradient(var(--oreo-interaction-hover-inverse), var(--oreo-interaction-hover-inverse));
+}
+@utility oreo-fill-press-inverse {
+  background-image: linear-gradient(var(--oreo-interaction-press-inverse), var(--oreo-interaction-press-inverse));
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* One rule for the cursor affordance across the whole library: a clickable thing shows a
+   pointer, and anything unavailable (native disabled, aria-disabled, or data-disabled) does
+   not. Components opt in with `oreo-clickable` instead of hand-rolling cursor classes. */
+@utility oreo-clickable {
+  cursor: pointer;
+
+  &:disabled,
+  &[disabled],
+  &[aria-disabled="true"],
+  &[data-disabled="true"] {
+    cursor: not-allowed;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: light;
+
+    /* Bg tokens */
+    --oreo-bg-base: #ffffff;
+    --oreo-bg-elevated: #f9f9f9;
+    --oreo-bg-subtle: rgba(0, 0, 0, 0.05);
+    --oreo-bg-dismiss: rgba(0, 0, 0, 0.03);
+    --oreo-bg-surface: #ffffff;
+    --oreo-bg-inverse: #202020;
+    --oreo-bg-scrim: rgba(0, 0, 0, 0.2);
+
+    /* Text tokens — secondary/tertiary/placeholder all clear WCAG AA (4.5:1) on their
+       intended surfaces. disabled/waiting are exempt (inactive control, non-text track). */
+    --oreo-text-primary: #000000;
+    --oreo-text-secondary: #5f5f5f;
+    --oreo-text-tertiary: #6e6e6e;
+    --oreo-text-placeholder: #767676;
+    --oreo-text-disabled: #bbbbbb;
+    --oreo-text-waiting: #d9d9d9;
+    --oreo-text-on-inverse: #ffffff;
+
+    /* Border tokens */
+    --oreo-border-default: rgba(0, 0, 0, 0.12);
+    --oreo-border-subtle: rgba(0, 0, 0, 0.09);
+    --oreo-border-focus: rgba(0, 0, 0, 0.87);
+    --oreo-border-inverse: rgba(255, 255, 255, 0.15);
+
+    /* Status tokens — used as both fills and text, so each reads as a valid text colour. */
+    --oreo-status-progress: #3e63dd;
+    --oreo-status-progress-subtle: rgba(62, 99, 221, 0.12);
+    --oreo-status-success: #0f7f72;
+    --oreo-status-success-subtle: rgba(18, 165, 148, 0.12);
+    --oreo-status-warning: #b84900;
+    --oreo-status-warning-subtle: rgba(239, 95, 0, 0.12);
+    --oreo-status-error: #c22f33;
+    --oreo-status-error-subtle: rgba(220, 62, 66, 0.12);
+
+    /* Interaction */
+    --oreo-interaction-hover: rgba(0, 0, 0, 0.02);
+    --oreo-interaction-press: rgba(0, 0, 0, 0.05);
+    --oreo-interaction-hover-inverse: rgba(255, 255, 255, 0.06);
+    --oreo-interaction-press-inverse: rgba(255, 255, 255, 0.1);
+
+    /* Semantic palette pairs (tag + avatar colours) */
+    --oreo-palette-default-bg: #f9f9f9;
+    --oreo-palette-default-text: #5f5f5f;
+    --oreo-palette-purple-bg: #f4f0fe;
+    --oreo-palette-purple-text: #5943ad;
+    --oreo-palette-blue-bg: #def7f9;
+    --oreo-palette-blue-text: #0d6a81;
+    --oreo-palette-mint-bg: #ddf9f2;
+    --oreo-palette-mint-text: #016656;
+    --oreo-palette-pink-bg: #fee9f5;
+    --oreo-palette-pink-text: #a92277;
+    --oreo-palette-brown-bg: #fffab8;
+    --oreo-palette-brown-text: #6b4f46;
+    --oreo-palette-orange-bg: #ffefd6;
+    --oreo-palette-orange-text: #ab4200;
+
+    /* Elevation / Shadows */
+    --oreo-shadow-default: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
+    --oreo-shadow-active: 0px 6px 12px 0px rgba(0, 0, 0, 0.06);
+    --oreo-shadow-floating: 0px 0px 1px 0px rgba(0, 0, 0, 0.24), 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+    --oreo-shadow-overlay: 0px 0px 1px 0px rgba(0, 0, 0, 0.24), 0px 4px 48px 0px rgba(0, 0, 0, 0.06);
+
+    /* Radii */
+    --oreo-radius-xs: 4px;
+    --oreo-radius-sm: 8px;
+    --oreo-radius-md: 12px;
+    --oreo-radius-lg: 16px;
+    --oreo-radius-xl: 20px;
+    --oreo-radius-2xl: 24px;
+    --oreo-radius-3xl: 48px;
+    --oreo-radius-full: 9999px;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Bg tokens */
+    --oreo-bg-base: #111111;
+    --oreo-bg-elevated: #191919;
+    --oreo-bg-subtle: rgba(255, 255, 255, 0.06);
+    --oreo-bg-dismiss: rgba(255, 255, 255, 0.04);
+    --oreo-bg-surface: #222222;
+    --oreo-bg-inverse: #fcfcfc;
+    --oreo-bg-scrim: rgba(0, 0, 0, 0.5);
+
+    /* Text tokens */
+    --oreo-text-primary: #ffffff;
+    --oreo-text-secondary: #b7b7b7;
+    --oreo-text-tertiary: #949494;
+    --oreo-text-placeholder: #8c8c8c;
+    --oreo-text-disabled: #606060;
+    --oreo-text-waiting: #3a3a3a;
+    --oreo-text-on-inverse: #000000;
+
+    /* Border tokens */
+    --oreo-border-default: rgba(255, 255, 255, 0.15);
+    --oreo-border-subtle: rgba(255, 255, 255, 0.11);
+    --oreo-border-focus: rgba(255, 255, 255, 0.93);
+    --oreo-border-inverse: rgba(0, 0, 0, 0.12);
+
+    /* Status tokens lifted so they stay AA as text on the dark surface stack */
+    --oreo-status-progress: #8fa8ff;
+    --oreo-status-progress-subtle: rgba(143, 168, 255, 0.16);
+    --oreo-status-success: #45cdb4;
+    --oreo-status-success-subtle: rgba(69, 205, 180, 0.16);
+    --oreo-status-warning: #ff9a4d;
+    --oreo-status-warning-subtle: rgba(255, 154, 77, 0.16);
+    --oreo-status-error: #ff7a7e;
+    --oreo-status-error-subtle: rgba(255, 122, 126, 0.16);
+
+    /* Interaction */
+    --oreo-interaction-hover: rgba(255, 255, 255, 0.06);
+    --oreo-interaction-press: rgba(255, 255, 255, 0.1);
+    --oreo-interaction-hover-inverse: rgba(0, 0, 0, 0.04);
+    --oreo-interaction-press-inverse: rgba(0, 0, 0, 0.08);
+
+    /* Semantic palette pairs, re-derived for the dark surface stack */
+    --oreo-palette-default-bg: #2a2a2a;
+    --oreo-palette-default-text: #c4c4c4;
+    --oreo-palette-purple-bg: #2a2542;
+    --oreo-palette-purple-text: #b9a9f5;
+    --oreo-palette-blue-bg: #12303a;
+    --oreo-palette-blue-text: #6ad4ea;
+    --oreo-palette-mint-bg: #10322b;
+    --oreo-palette-mint-text: #5fd9bd;
+    --oreo-palette-pink-bg: #3a1c30;
+    --oreo-palette-pink-text: #f389c9;
+    --oreo-palette-brown-bg: #3a3420;
+    --oreo-palette-brown-text: #d3ab9d;
+    --oreo-palette-orange-bg: #3a2a12;
+    --oreo-palette-orange-text: #ffa04d;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--oreo-bg-base);
+  color: var(--oreo-text-primary);
+  font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prose measure for long-form content (65–75ch) */
+.prose-measure {
+  max-width: 68ch;
 }

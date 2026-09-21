@@ -1,0 +1,54 @@
+name: Component issue
+description: A primitive or composite is wrong, missing a state, or diverges from Figma
+title: "[component] "
+labels: ["component"]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: Component
+      description: Which export is affected?
+      placeholder: Button, AgentPrompt, ChatContainer, ...
+    validations:
+      required: true
+
+  - type: input
+    id: figma
+    attributes:
+      label: Figma node
+      description: Node id from the Oreo Agentic UI Library file, if this is a parity issue.
+      placeholder: "23:11448"
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+      description: What should happen, and which variant axis or state is involved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: What happens instead. Include the class list or a screenshot when useful.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did you see it
+      options:
+        - Storybook
+        - Application route
+        - Both
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Theme, viewport, browser, reduced-motion setting.
+      placeholder: dark theme, 390px viewport, Chromium, prefers-reduced-motion: reduce

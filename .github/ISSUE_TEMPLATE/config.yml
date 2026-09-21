@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Component usage question
+    url: https://github.com/oreoui/oreo-ui/discussions
+    about: Ask about props, variants, or how a component maps to its Figma node.
+  - name: Design system docs
+    url: https://github.com/oreoui/oreo-ui#readme
+    about: Kit inventory, principles, and local setup.
