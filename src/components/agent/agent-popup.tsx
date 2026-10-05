@@ -40,12 +40,12 @@ export function AgentPopupCard({
     <article
       aria-labelledby="agent-popup-title"
       className={cn(
-        "relative flex w-full max-w-[320px] flex-col overflow-hidden rounded-[16px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] shadow-[var(--oreo-shadow-floating)]",
+        "relative flex w-full max-w-[320px] flex-col overflow-hidden rounded-[var(--oreo-radius-lg)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] shadow-[var(--oreo-shadow-floating)]",
         className
       )}
     >
       <div className="relative h-[180px] overflow-hidden border-b-[0.5px] border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] p-5">
-        <div className="relative h-[179px] w-full overflow-hidden rounded-[8px] shadow-[0px_2px_8px_rgba(0,0,0,0.06)]">
+        <div className="relative h-[179px] w-full overflow-hidden rounded-[var(--oreo-radius-sm)] shadow-[0px_2px_8px_rgba(0,0,0,0.06)]">
           <Image src={imageSrc} alt={imageAlt} fill sizes="280px" priority className="object-cover object-top" />
         </div>
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[var(--oreo-bg-elevated)] to-transparent opacity-90" />

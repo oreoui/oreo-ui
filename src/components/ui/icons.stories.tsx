@@ -38,7 +38,7 @@ function IconFoundations() {
             const Glyph = icons[name] as React.ComponentType<{ className?: string }> | undefined
             if (!Glyph) return null
             return (
-              <div key={name} className="flex flex-col items-center gap-3 rounded-[16px] border-[0.5px] border-[var(--oreo-border-subtle)] p-4">
+              <div key={name} className="flex flex-col items-center gap-3 rounded-[var(--oreo-radius-lg)] border-[0.5px] border-[var(--oreo-border-subtle)] p-4">
                 <Glyph className="size-5" />
                 <span className="font-mono text-[11px] text-[var(--oreo-text-tertiary)]">{name}</span>
               </div>

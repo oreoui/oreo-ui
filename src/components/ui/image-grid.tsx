@@ -51,7 +51,7 @@ export function ImageTile({
       onFocus={() => setHovered(true)}
       onBlur={() => setHovered(false)}
       className={cn(
-        "relative overflow-hidden rounded-[8px] bg-[var(--oreo-bg-elevated)]",
+        "relative overflow-hidden rounded-[var(--oreo-radius-sm)] bg-[var(--oreo-bg-elevated)]",
         ratios[aspectRatio],
         className
       )}

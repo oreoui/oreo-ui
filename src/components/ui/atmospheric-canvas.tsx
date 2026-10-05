@@ -588,7 +588,7 @@ export function CelestialToggle({
             size === "lg" && "size-10",
           ],
           variant === "minimal" && [
-            "rounded-[8px] text-[var(--oreo-text-secondary)] hover:bg-[var(--oreo-bg-subtle)] hover:text-[var(--oreo-text-primary)]",
+            "rounded-[var(--oreo-radius-sm)] text-[var(--oreo-text-secondary)] hover:bg-[var(--oreo-bg-subtle)] hover:text-[var(--oreo-text-primary)]",
             sizeStyles[size],
           ],
           className

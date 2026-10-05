@@ -22,7 +22,7 @@ const iconButtonVariants = cva(
       },
       shape: {
         rounded: "rounded-full",
-        rectangle: "rounded-[8px]",
+        rectangle: "rounded-[var(--oreo-radius-sm)]",
       },
       floating: {
         true: "shadow-[var(--oreo-shadow-default)]",

@@ -36,7 +36,7 @@ export function ThoughtChain({
   return (
     <div
       className={cn(
-        "my-3 overflow-hidden rounded-[12px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] text-[13px]",
+        "my-3 overflow-hidden rounded-[var(--oreo-radius-md)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] text-[13px]",
         className
       )}
     >
@@ -148,7 +148,7 @@ export function ChatMessage({
     return (
       <div className={cn("my-4 flex justify-end gap-3", className)}>
         <div className="flex max-w-[85%] flex-col items-end gap-1 sm:max-w-[75%]">
-          <div className="rounded-[16px] bg-[var(--oreo-bg-inverse)] px-4 py-2.5 text-[14px] leading-[1.5] text-[var(--oreo-text-on-inverse)] shadow-sm">
+          <div className="rounded-[var(--oreo-radius-lg)] bg-[var(--oreo-bg-inverse)] px-4 py-2.5 text-[14px] leading-[1.5] text-[var(--oreo-text-on-inverse)] shadow-sm">
             {content || children}
           </div>
           {timestamp && (

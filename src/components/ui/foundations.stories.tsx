@@ -49,8 +49,8 @@ function FoundationPreview() {
             <h2 className="text-2xl font-semibold">Color</h2>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
               {colorTokens.map(([name, value, token], index) => (
-                <motion.div key={name} initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: reduceMotion ? 0 : index * 0.03 }} className="rounded-[16px] border border-black/[0.09] p-3">
-                  <div className="h-20 rounded-[12px] border border-black/[0.09]" style={{ background: token }} />
+                <motion.div key={name} initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: reduceMotion ? 0 : index * 0.03 }} className="rounded-[var(--oreo-radius-lg)] border border-black/[0.09] p-3">
+                  <div className="h-20 rounded-[var(--oreo-radius-md)] border border-black/[0.09]" style={{ background: token }} />
                   <p className="mt-3 text-[14px] font-medium">{name}</p>
                   <p className="mt-1 font-mono text-[12px] text-[#646464]">{value}</p>
                 </motion.div>
@@ -75,7 +75,7 @@ function FoundationPreview() {
             <div>
               <h2 className="text-2xl font-semibold">Elevation</h2>
               <div className="mt-6 grid grid-cols-2 gap-8 p-6">
-                {[["Default", "var(--oreo-shadow-default)"], ["Active", "var(--oreo-shadow-active)"], ["Floating", "var(--oreo-shadow-floating)"], ["Overlay", "var(--oreo-shadow-overlay)"]].map(([name, shadow]) => <div key={name} className="grid aspect-[2/1] place-items-center rounded-[16px] border border-black/[0.09] bg-white text-sm" style={{ boxShadow: shadow }}><span>{name}</span></div>)}
+                {[["Default", "var(--oreo-shadow-default)"], ["Active", "var(--oreo-shadow-active)"], ["Floating", "var(--oreo-shadow-floating)"], ["Overlay", "var(--oreo-shadow-overlay)"]].map(([name, shadow]) => <div key={name} className="grid aspect-[2/1] place-items-center rounded-[var(--oreo-radius-lg)] border border-black/[0.09] bg-white text-sm" style={{ boxShadow: shadow }}><span>{name}</span></div>)}
               </div>
             </div>
             <div>

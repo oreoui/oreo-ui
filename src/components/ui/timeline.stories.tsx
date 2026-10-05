@@ -26,7 +26,7 @@ type Story = StoryObj<typeof Timeline>
 export const AgentExecutionPlan: Story = {
   name: "Agent execution plan",
   render: () => (
-    <div className="w-[520px] rounded-[16px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] p-6 shadow-[var(--oreo-shadow-default)]">
+    <div className="w-[520px] rounded-[var(--oreo-radius-lg)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] p-6 shadow-[var(--oreo-shadow-default)]">
       <div className="mb-6 flex items-center justify-between border-b border-[var(--oreo-border-subtle)] pb-4">
         <div>
           <h3 className="text-[17px] font-semibold text-[var(--oreo-text-primary)]">Agent Reasoning Plan</h3>
@@ -84,7 +84,7 @@ export const AgentExecutionPlan: Story = {
             <TimelineDescription>
               Writing single-element Framer Motion wrappers and verifying layout margins.
             </TimelineDescription>
-            <div className="mt-2 rounded-[8px] bg-[var(--oreo-bg-elevated)] p-2.5 font-mono text-[12px] text-[var(--oreo-text-secondary)]">
+            <div className="mt-2 rounded-[var(--oreo-radius-sm)] bg-[var(--oreo-bg-elevated)] p-2.5 font-mono text-[12px] text-[var(--oreo-text-secondary)]">
               <div className="flex items-center gap-1.5 text-[var(--oreo-text-tertiary)] mb-1">
                 <Terminal size={12} />
                 <span>Compiler output</span>

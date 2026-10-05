@@ -341,7 +341,7 @@ export function DropdownContent({ children, className, width = "auto" }: Dropdow
               width,
             }}
             className={cn(
-              "pointer-events-auto flex min-w-[180px] flex-col overflow-hidden rounded-[12px] border-[0.5px] border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] p-1.5 shadow-[var(--oreo-shadow-floating)]",
+              "pointer-events-auto flex min-w-[180px] flex-col overflow-hidden rounded-[var(--oreo-radius-md)] border-[0.5px] border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] p-1.5 shadow-[var(--oreo-shadow-floating)]",
               className
             )}
           >
@@ -417,7 +417,7 @@ export function DropdownItem({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={cn(
-        "group flex h-[34px] w-full oreo-clickable select-none items-center gap-2 rounded-[8px] px-2.5 text-left text-[14px] leading-[1.43] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
+        "group flex h-[34px] w-full oreo-clickable select-none items-center gap-2 rounded-[var(--oreo-radius-sm)] px-2.5 text-left text-[14px] leading-[1.43] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
         variant === "default" && "text-[var(--oreo-text-primary)] enabled:hover:bg-[var(--oreo-interaction-hover)] enabled:active:bg-[var(--oreo-interaction-press)]",
         variant === "danger" && "text-[var(--oreo-status-error)] enabled:hover:bg-[var(--oreo-status-error-subtle)] enabled:active:bg-[var(--oreo-status-error-subtle)]",
         variant === "ghost" && "text-[var(--oreo-text-secondary)] enabled:hover:bg-[var(--oreo-interaction-hover)] enabled:hover:text-[var(--oreo-text-primary)]",
