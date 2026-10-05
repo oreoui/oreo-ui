@@ -35,6 +35,42 @@
   }
 }
 
+/* Shadcn-compatible theme contract. Values point at the active Oreo tokens so a
+   color set, radius preset, or font pairing updates every utility at once. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-sans-active);
+  --font-display: var(--font-display-active);
+  --font-mono: var(--font-mono-active);
+}
+
 @layer base {
   :root {
     color-scheme: light;
@@ -111,6 +147,38 @@
     --oreo-radius-2xl: 24px;
     --oreo-radius-3xl: 48px;
     --oreo-radius-full: 9999px;
+
+    /* Active font stacks. Pairings override these from [data-font]. */
+    --font-sans-active: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display-active: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono-active: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* Shadcn aliases. Color sets recolor the Oreo tokens, and these follow. */
+    --background: var(--oreo-bg-base);
+    --foreground: var(--oreo-text-primary);
+    --card: var(--oreo-bg-surface);
+    --card-foreground: var(--oreo-text-primary);
+    --popover: var(--oreo-bg-surface);
+    --popover-foreground: var(--oreo-text-primary);
+    --primary: var(--oreo-bg-inverse);
+    --primary-foreground: var(--oreo-text-on-inverse);
+    --secondary: var(--oreo-bg-elevated);
+    --secondary-foreground: var(--oreo-text-primary);
+    --muted: var(--oreo-bg-subtle);
+    --muted-foreground: var(--oreo-text-secondary);
+    --accent: var(--oreo-bg-subtle);
+    --accent-foreground: var(--oreo-text-primary);
+    --destructive: var(--oreo-status-error);
+    --destructive-foreground: var(--oreo-text-on-inverse);
+    --border: var(--oreo-border-default);
+    --input: var(--oreo-border-default);
+    --ring: var(--oreo-border-focus);
+    --radius: var(--oreo-radius-md);
+    --chart-1: #3e63dd;
+    --chart-2: #0f7f72;
+    --chart-3: #b84900;
+    --chart-4: #5943ad;
+    --chart-5: #a92277;
   }
 
   .dark,
@@ -172,19 +240,362 @@
     --oreo-palette-brown-text: #d3ab9d;
     --oreo-palette-orange-bg: #3a2a12;
     --oreo-palette-orange-text: #ffa04d;
+
+    --chart-1: #8fa8ff;
+    --chart-2: #45cdb4;
+    --chart-3: #ff9a4d;
+    --chart-4: #b9a9f5;
+    --chart-5: #f389c9;
+  }
+
+  /* Editorial — warm paper and forest ink, in the spirit of a calm rank tracker. */
+  [data-color="editorial"] {
+    --oreo-bg-base: #f6f3ec;
+    --oreo-bg-elevated: #efeae1;
+    --oreo-bg-subtle: rgba(40, 32, 22, 0.05);
+    --oreo-bg-dismiss: rgba(40, 32, 22, 0.03);
+    --oreo-bg-surface: #fffcf7;
+    --oreo-bg-inverse: #1e4d3a;
+    --oreo-bg-scrim: rgba(28, 24, 18, 0.36);
+    --oreo-text-primary: #1c1915;
+    --oreo-text-secondary: #5e574c;
+    --oreo-text-tertiary: #6f675c;
+    --oreo-text-placeholder: #7a7266;
+    --oreo-text-disabled: #b7b0a4;
+    --oreo-text-waiting: #d9d3c8;
+    --oreo-text-on-inverse: #f6f3ec;
+    --oreo-border-default: rgba(40, 32, 22, 0.14);
+    --oreo-border-subtle: rgba(40, 32, 22, 0.09);
+    --oreo-border-focus: #1e4d3a;
+    --oreo-border-inverse: rgba(246, 243, 236, 0.22);
+    --oreo-status-progress: #1e4d3a;
+    --oreo-status-progress-subtle: rgba(30, 77, 58, 0.12);
+    --oreo-status-success: #0f7a4b;
+    --oreo-status-success-subtle: rgba(15, 122, 75, 0.12);
+    --oreo-status-warning: #9a4d12;
+    --oreo-status-warning-subtle: rgba(154, 77, 18, 0.12);
+    --oreo-status-error: #b4232c;
+    --oreo-status-error-subtle: rgba(180, 35, 44, 0.12);
+    --oreo-interaction-hover: rgba(40, 32, 22, 0.04);
+    --oreo-interaction-press: rgba(40, 32, 22, 0.08);
+    --oreo-interaction-hover-inverse: rgba(255, 255, 255, 0.08);
+    --oreo-interaction-press-inverse: rgba(255, 255, 255, 0.14);
+    --accent: #e7f2eb;
+    --accent-foreground: #1e4d3a;
+    --chart-1: #1e4d3a;
+    --chart-2: #c47b3a;
+    --chart-3: #3d6b8c;
+    --chart-4: #8c4a3a;
+    --chart-5: #6b5b3a;
+  }
+
+  .dark[data-color="editorial"],
+  [data-theme="dark"][data-color="editorial"] {
+    --oreo-bg-base: #141210;
+    --oreo-bg-elevated: #1c1916;
+    --oreo-bg-subtle: rgba(246, 243, 236, 0.06);
+    --oreo-bg-dismiss: rgba(246, 243, 236, 0.04);
+    --oreo-bg-surface: #24201c;
+    --oreo-bg-inverse: #8fd0ae;
+    --oreo-bg-scrim: rgba(0, 0, 0, 0.55);
+    --oreo-text-primary: #f6f3ec;
+    --oreo-text-secondary: #c9c1b4;
+    --oreo-text-tertiary: #a79e90;
+    --oreo-text-placeholder: #978e80;
+    --oreo-text-disabled: #6d655b;
+    --oreo-text-waiting: #3f3a34;
+    --oreo-text-on-inverse: #14281e;
+    --oreo-border-default: rgba(246, 243, 236, 0.14);
+    --oreo-border-subtle: rgba(246, 243, 236, 0.1);
+    --oreo-border-focus: #8fd0ae;
+    --oreo-border-inverse: rgba(20, 40, 30, 0.16);
+    --oreo-status-progress: #8fd0ae;
+    --oreo-status-progress-subtle: rgba(143, 208, 174, 0.16);
+    --oreo-status-success: #6dce9a;
+    --oreo-status-success-subtle: rgba(109, 206, 154, 0.16);
+    --oreo-status-warning: #e2b07a;
+    --oreo-status-warning-subtle: rgba(226, 176, 122, 0.16);
+    --oreo-status-error: #ff8d86;
+    --oreo-status-error-subtle: rgba(255, 141, 134, 0.16);
+    --oreo-interaction-hover: rgba(246, 243, 236, 0.06);
+    --oreo-interaction-press: rgba(246, 243, 236, 0.1);
+    --oreo-interaction-hover-inverse: rgba(20, 40, 30, 0.06);
+    --oreo-interaction-press-inverse: rgba(20, 40, 30, 0.1);
+    --accent: #1c3328;
+    --accent-foreground: #8fd0ae;
+    --chart-1: #8fd0ae;
+    --chart-2: #e2b07a;
+    --chart-3: #8eb4d4;
+    --chart-4: #e09a8c;
+    --chart-5: #d4c48a;
+  }
+
+  /* Vibe — electric violet and lime, in the spirit of a builder community. */
+  [data-color="vibe"] {
+    --oreo-bg-base: #f7f6fb;
+    --oreo-bg-elevated: #efedf7;
+    --oreo-bg-subtle: rgba(36, 24, 84, 0.05);
+    --oreo-bg-dismiss: rgba(36, 24, 84, 0.03);
+    --oreo-bg-surface: #ffffff;
+    --oreo-bg-inverse: #3d2ad4;
+    --oreo-bg-scrim: rgba(18, 14, 36, 0.4);
+    --oreo-text-primary: #16141f;
+    --oreo-text-secondary: #564f6b;
+    --oreo-text-tertiary: #655e78;
+    --oreo-text-placeholder: #6e6782;
+    --oreo-text-disabled: #b7b1c6;
+    --oreo-text-waiting: #ddd8ea;
+    --oreo-text-on-inverse: #ffffff;
+    --oreo-border-default: rgba(36, 24, 84, 0.14);
+    --oreo-border-subtle: rgba(36, 24, 84, 0.09);
+    --oreo-border-focus: #3d2ad4;
+    --oreo-border-inverse: rgba(255, 255, 255, 0.2);
+    --oreo-status-progress: #3d2ad4;
+    --oreo-status-progress-subtle: rgba(61, 42, 212, 0.12);
+    --oreo-status-success: #0f7a52;
+    --oreo-status-success-subtle: rgba(15, 122, 82, 0.12);
+    --oreo-status-warning: #a15c00;
+    --oreo-status-warning-subtle: rgba(161, 92, 0, 0.12);
+    --oreo-status-error: #c2185b;
+    --oreo-status-error-subtle: rgba(194, 24, 91, 0.12);
+    --oreo-interaction-hover: rgba(36, 24, 84, 0.04);
+    --oreo-interaction-press: rgba(36, 24, 84, 0.08);
+    --oreo-interaction-hover-inverse: rgba(255, 255, 255, 0.08);
+    --oreo-interaction-press-inverse: rgba(255, 255, 255, 0.14);
+    --accent: #ece8ff;
+    --accent-foreground: #3d2ad4;
+    --chart-1: #3d2ad4;
+    --chart-2: #0f9f6e;
+    --chart-3: #e11d8f;
+    --chart-4: #d97706;
+    --chart-5: #0891b2;
+  }
+
+  .dark[data-color="vibe"],
+  [data-theme="dark"][data-color="vibe"] {
+    --oreo-bg-base: #0e0d14;
+    --oreo-bg-elevated: #16141f;
+    --oreo-bg-subtle: rgba(245, 244, 250, 0.06);
+    --oreo-bg-dismiss: rgba(245, 244, 250, 0.04);
+    --oreo-bg-surface: #1c1a27;
+    --oreo-bg-inverse: #d6f25c;
+    --oreo-bg-scrim: rgba(0, 0, 0, 0.58);
+    --oreo-text-primary: #f5f4fa;
+    --oreo-text-secondary: #b7b3c9;
+    --oreo-text-tertiary: #9b96b0;
+    --oreo-text-placeholder: #8f8aa6;
+    --oreo-text-disabled: #5e596e;
+    --oreo-text-waiting: #3a3648;
+    --oreo-text-on-inverse: #16140a;
+    --oreo-border-default: rgba(245, 244, 250, 0.14);
+    --oreo-border-subtle: rgba(245, 244, 250, 0.1);
+    --oreo-border-focus: #d6f25c;
+    --oreo-border-inverse: rgba(22, 20, 10, 0.16);
+    --oreo-status-progress: #d6f25c;
+    --oreo-status-progress-subtle: rgba(214, 242, 92, 0.16);
+    --oreo-status-success: #5ee0a0;
+    --oreo-status-success-subtle: rgba(94, 224, 160, 0.16);
+    --oreo-status-warning: #fbbf24;
+    --oreo-status-warning-subtle: rgba(251, 191, 36, 0.16);
+    --oreo-status-error: #fb7185;
+    --oreo-status-error-subtle: rgba(251, 113, 133, 0.16);
+    --oreo-interaction-hover: rgba(245, 244, 250, 0.06);
+    --oreo-interaction-press: rgba(245, 244, 250, 0.1);
+    --oreo-interaction-hover-inverse: rgba(22, 20, 10, 0.06);
+    --oreo-interaction-press-inverse: rgba(22, 20, 10, 0.1);
+    --accent: #2a2542;
+    --accent-foreground: #d6f25c;
+    --chart-1: #d6f25c;
+    --chart-2: #a78bfa;
+    --chart-3: #fb7185;
+    --chart-4: #67e8f9;
+    --chart-5: #fbbf24;
+  }
+
+  /* Harbor — the familiar shadcn zinc surface with a blue primary. */
+  [data-color="harbor"] {
+    --oreo-bg-base: #ffffff;
+    --oreo-bg-elevated: #f4f4f5;
+    --oreo-bg-subtle: rgba(9, 9, 11, 0.05);
+    --oreo-bg-dismiss: rgba(9, 9, 11, 0.03);
+    --oreo-bg-surface: #ffffff;
+    --oreo-bg-inverse: #1d4ed8;
+    --oreo-bg-scrim: rgba(9, 9, 11, 0.4);
+    --oreo-text-primary: #09090b;
+    --oreo-text-secondary: #52525b;
+    --oreo-text-tertiary: #5c5c66;
+    --oreo-text-placeholder: #65656f;
+    --oreo-text-disabled: #b4b4bc;
+    --oreo-text-waiting: #d4d4d8;
+    --oreo-text-on-inverse: #ffffff;
+    --oreo-border-default: rgba(9, 9, 11, 0.14);
+    --oreo-border-subtle: rgba(9, 9, 11, 0.08);
+    --oreo-border-focus: #1d4ed8;
+    --oreo-border-inverse: rgba(255, 255, 255, 0.2);
+    --oreo-status-progress: #1d4ed8;
+    --oreo-status-progress-subtle: rgba(29, 78, 216, 0.12);
+    --oreo-status-success: #0f766e;
+    --oreo-status-success-subtle: rgba(15, 118, 110, 0.12);
+    --oreo-status-warning: #c2410c;
+    --oreo-status-warning-subtle: rgba(194, 65, 12, 0.12);
+    --oreo-status-error: #be123c;
+    --oreo-status-error-subtle: rgba(190, 18, 60, 0.12);
+    --oreo-interaction-hover: rgba(9, 9, 11, 0.04);
+    --oreo-interaction-press: rgba(9, 9, 11, 0.08);
+    --oreo-interaction-hover-inverse: rgba(255, 255, 255, 0.08);
+    --oreo-interaction-press-inverse: rgba(255, 255, 255, 0.14);
+    --accent: #eff4ff;
+    --accent-foreground: #1d4ed8;
+    --chart-1: #1d4ed8;
+    --chart-2: #0f766e;
+    --chart-3: #c2410c;
+    --chart-4: #6d28d9;
+    --chart-5: #be123c;
+  }
+
+  .dark[data-color="harbor"],
+  [data-theme="dark"][data-color="harbor"] {
+    --oreo-bg-base: #09090b;
+    --oreo-bg-elevated: #18181b;
+    --oreo-bg-subtle: rgba(250, 250, 250, 0.06);
+    --oreo-bg-dismiss: rgba(250, 250, 250, 0.04);
+    --oreo-bg-surface: #18181b;
+    --oreo-bg-inverse: #93c5fd;
+    --oreo-bg-scrim: rgba(0, 0, 0, 0.6);
+    --oreo-text-primary: #fafafa;
+    --oreo-text-secondary: #a1a1aa;
+    --oreo-text-tertiary: #8d8d96;
+    --oreo-text-placeholder: #84848e;
+    --oreo-text-disabled: #52525b;
+    --oreo-text-waiting: #3f3f46;
+    --oreo-text-on-inverse: #0a0a0a;
+    --oreo-border-default: rgba(250, 250, 250, 0.14);
+    --oreo-border-subtle: rgba(250, 250, 250, 0.1);
+    --oreo-border-focus: #93c5fd;
+    --oreo-border-inverse: rgba(10, 10, 10, 0.14);
+    --oreo-status-progress: #93c5fd;
+    --oreo-status-progress-subtle: rgba(147, 197, 253, 0.16);
+    --oreo-status-success: #5eead4;
+    --oreo-status-success-subtle: rgba(94, 234, 212, 0.16);
+    --oreo-status-warning: #fdba74;
+    --oreo-status-warning-subtle: rgba(253, 186, 116, 0.16);
+    --oreo-status-error: #fda4af;
+    --oreo-status-error-subtle: rgba(253, 164, 175, 0.16);
+    --oreo-interaction-hover: rgba(250, 250, 250, 0.06);
+    --oreo-interaction-press: rgba(250, 250, 250, 0.1);
+    --oreo-interaction-hover-inverse: rgba(10, 10, 10, 0.06);
+    --oreo-interaction-press-inverse: rgba(10, 10, 10, 0.1);
+    --accent: #1e293b;
+    --accent-foreground: #93c5fd;
+    --chart-1: #93c5fd;
+    --chart-2: #5eead4;
+    --chart-3: #fdba74;
+    --chart-4: #c4b5fd;
+    --chart-5: #fda4af;
+  }
+
+  [data-radius="sharp"] {
+    --oreo-radius-xs: 2px;
+    --oreo-radius-sm: 4px;
+    --oreo-radius-md: 6px;
+    --oreo-radius-lg: 8px;
+    --oreo-radius-xl: 10px;
+    --oreo-radius-2xl: 12px;
+    --oreo-radius-3xl: 18px;
+    --radius: 6px;
+  }
+
+  [data-radius="rounded"] {
+    --oreo-radius-xs: 6px;
+    --oreo-radius-sm: 10px;
+    --oreo-radius-md: 12px;
+    --oreo-radius-lg: 16px;
+    --oreo-radius-xl: 20px;
+    --oreo-radius-2xl: 24px;
+    --oreo-radius-3xl: 40px;
+    --radius: 12px;
+  }
+
+  [data-radius="soft"] {
+    --oreo-radius-xs: 10px;
+    --oreo-radius-sm: 14px;
+    --oreo-radius-md: 18px;
+    --oreo-radius-lg: 24px;
+    --oreo-radius-xl: 28px;
+    --oreo-radius-2xl: 36px;
+    --oreo-radius-3xl: 56px;
+    --radius: 18px;
+  }
+
+  [data-font="inter"] {
+    --font-sans-active: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display-active: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-mono-active: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  [data-font="editorial"] {
+    --font-sans-active: var(--font-source-sans), "Source Sans 3", sans-serif;
+    --font-display-active: var(--font-fraunces), Fraunces, Georgia, serif;
+    --font-mono-active: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  [data-font="studio"] {
+    --font-sans-active: var(--font-jakarta), "Plus Jakarta Sans", sans-serif;
+    --font-display-active: var(--font-instrument), "Instrument Serif", Georgia, serif;
+    --font-mono-active: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  [data-font="vibe"] {
+    --font-sans-active: var(--font-outfit), Outfit, sans-serif;
+    --font-display-active: var(--font-space), "Space Grotesk", sans-serif;
+    --font-mono-active: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
   }
 }
 
 body {
-  background-color: var(--oreo-bg-base);
-  color: var(--oreo-text-primary);
-  font-family: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans-active);
   -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display-active), var(--font-sans-active), sans-serif;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono-active), ui-monospace, monospace;
 }
 
 /* Prose measure for long-form content (65–75ch) */
 .prose-measure {
   max-width: 68ch;
+}
+
+@keyframes oreo-rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.oreo-rise {
+  animation: oreo-rise 0.5s cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oreo-rise {
+    animation: none;
+  }
 }
 
 /* View Transition API rules for Celestial Theme Transition.

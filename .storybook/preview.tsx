@@ -1,7 +1,16 @@
-import '../src/app/globals.css'
 import type { Preview } from '@storybook/nextjs-vite'
 
+import { AppearanceProvider } from '../src/components/theme/appearance-provider'
+import '../src/app/globals.css'
+
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <AppearanceProvider>
+        <Story />
+      </AppearanceProvider>
+    ),
+  ],
   parameters: {
     controls: {
       matchers: {

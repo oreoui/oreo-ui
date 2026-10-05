@@ -14,7 +14,7 @@ import { cn } from "@/lib/cn"
  * themes, matching the Figma fill stacks (Hover/Press over the base colour).
  */
 const buttonVariants = cva(
-  "inline-flex h-[32px] oreo-clickable select-none items-center justify-center gap-1 whitespace-nowrap rounded-[8px] px-[12px] py-[6px] text-[14px] font-medium leading-[1.43] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
+  "inline-flex h-[32px] oreo-clickable select-none items-center justify-center gap-1 whitespace-nowrap rounded-[var(--oreo-radius-sm)] px-[12px] py-[6px] text-[14px] font-medium leading-[1.43] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
   {
     variants: {
       variant: {

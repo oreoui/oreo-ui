@@ -62,7 +62,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         onClick={onClick}
         onKeyDown={handleKeyDown}
         className={cn(
-          "relative flex flex-col overflow-hidden rounded-[16px] text-[var(--oreo-text-primary)] transition-shadow",
+          "relative flex flex-col overflow-hidden rounded-[var(--oreo-radius-lg)] text-[var(--oreo-text-primary)] transition-shadow",
           variantStyles[variant],
           paddingStyles[padding],
           clickable

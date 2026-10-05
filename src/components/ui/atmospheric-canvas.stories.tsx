@@ -32,7 +32,7 @@ export const Default: Story = {
     <AtmosphericCanvas {...args}>
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 sm:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex size-7 items-center justify-center rounded-[8px] bg-[var(--oreo-text-primary)] text-xs font-bold text-[var(--oreo-bg-base)]">
+          <div className="flex size-7 items-center justify-center rounded-[var(--oreo-radius-sm)] bg-[var(--oreo-text-primary)] text-xs font-bold text-[var(--oreo-bg-base)]">
             O
           </div>
           <span className="text-[14px] font-semibold tracking-tight">OreoUI Studio</span>
@@ -77,7 +77,7 @@ export const Default: Story = {
         </div>
 
         {/* Trajectory milestone line inspired by ciptadusa.com */}
-        <div className="mt-16 w-full max-w-2xl rounded-[16px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)]/70 p-6 backdrop-blur-sm shadow-sm">
+        <div className="mt-16 w-full max-w-2xl rounded-[var(--oreo-radius-lg)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)]/70 p-6 backdrop-blur-sm shadow-sm">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             <div className="text-left">
               <span className="text-xs font-medium uppercase tracking-wider text-[var(--oreo-text-tertiary)]">Reliability</span>

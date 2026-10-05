@@ -90,7 +90,7 @@ export function AgentPrompt({
   return (
     <div
       className={cn(
-        "relative flex w-full max-w-[800px] flex-col overflow-hidden rounded-[16px] border-[0.5px] border-[var(--oreo-border-default)] bg-[var(--oreo-bg-base)] shadow-[var(--oreo-shadow-default)]",
+        "relative flex w-full max-w-[800px] flex-col overflow-hidden rounded-[var(--oreo-radius-lg)] border-[0.5px] border-[var(--oreo-border-default)] bg-[var(--oreo-bg-base)] shadow-[var(--oreo-shadow-default)]",
         className
       )}
     >

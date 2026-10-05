@@ -87,7 +87,7 @@ export function MediaPlayer({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "group relative w-full overflow-hidden rounded-[12px] border border-[var(--oreo-border-subtle)] bg-black shadow-[var(--oreo-shadow-default)]",
+        "group relative w-full overflow-hidden rounded-[var(--oreo-radius-md)] border border-[var(--oreo-border-subtle)] bg-black shadow-[var(--oreo-shadow-default)]",
         ratioClasses[aspectRatio],
         className
       )}

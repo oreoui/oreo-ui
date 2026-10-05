@@ -23,7 +23,7 @@ function CodeBlock({ code, language }: { code: string; language?: string }) {
   }
 
   return (
-    <div className="relative my-3 overflow-hidden rounded-[12px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] shadow-sm">
+    <div className="relative my-3 overflow-hidden rounded-[var(--oreo-radius-md)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] shadow-sm">
       <div className="flex h-9 items-center justify-between border-b border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] px-3.5">
         <span className="font-mono text-[11px] font-medium uppercase tracking-wider text-[var(--oreo-text-tertiary)]">
           {language || "code"}
@@ -60,7 +60,7 @@ function renderInline(text: string): React.ReactNode {
       tokens.push(
         <code
           key={key++}
-          className="rounded-[4px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-subtle)] px-1.5 py-0.5 font-mono text-[12px] text-[var(--oreo-text-primary)]"
+          className="rounded-[var(--oreo-radius-xs)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-subtle)] px-1.5 py-0.5 font-mono text-[12px] text-[var(--oreo-text-primary)]"
         >
           {codeMatch[1]}
         </code>
@@ -171,7 +171,7 @@ function parseMarkdown(content: string): React.ReactNode[] {
         elements.push(<div key={key++} className="my-3"><MediaPlayer src={url} /></div>)
       } else {
         elements.push(
-          <div key={key++} className="my-3 max-w-md overflow-hidden rounded-[12px]">
+          <div key={key++} className="my-3 max-w-md overflow-hidden rounded-[var(--oreo-radius-md)]">
             <ImageTile src={url} alt={alt} aspectRatio="16:9" />
           </div>
         )
@@ -200,7 +200,7 @@ function parseMarkdown(content: string): React.ReactNode[] {
     // Blockquote: > text
     if (line.startsWith("> ")) {
       elements.push(
-        <blockquote key={key++} className="my-3 rounded-[8px] bg-[var(--oreo-bg-elevated)] px-3.5 py-3 text-[14px] leading-[1.6] text-[var(--oreo-text-secondary)]">
+        <blockquote key={key++} className="my-3 rounded-[var(--oreo-radius-sm)] bg-[var(--oreo-bg-elevated)] px-3.5 py-3 text-[14px] leading-[1.6] text-[var(--oreo-text-secondary)]">
           {renderInline(line.slice(2))}
         </blockquote>
       )
@@ -219,7 +219,7 @@ function parseMarkdown(content: string): React.ReactNode[] {
       const rows = tableLines.slice(2).map(r => r.split("|").slice(1, -1).map(s => s.trim()))
 
       elements.push(
-        <div key={key++} className="my-3 overflow-x-auto rounded-[8px] border border-[var(--oreo-border-subtle)]">
+        <div key={key++} className="my-3 overflow-x-auto rounded-[var(--oreo-radius-sm)] border border-[var(--oreo-border-subtle)]">
           <table className="w-full text-left text-[13px]">
             <thead className="border-b border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] font-medium text-[var(--oreo-text-secondary)]">
               <tr>

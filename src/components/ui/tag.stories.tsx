@@ -48,7 +48,7 @@ function FilterList() {
         </Tag>
       ))}
       {filters.length === 0 && (
-        <button type="button" className="rounded-[8px] bg-[#f9f9f9] px-3 py-1 text-[12px] text-[#646464]" onClick={() => setFilters(["mint", "purple", "orange"])}>
+        <button type="button" className="rounded-[var(--oreo-radius-sm)] bg-[#f9f9f9] px-3 py-1 text-[12px] text-[#646464]" onClick={() => setFilters(["mint", "purple", "orange"])}>
           Restore filters
         </button>
       )}

@@ -41,7 +41,7 @@ export function GenerationSkeleton({
   return (
     <div
       className={cn(
-        "relative flex w-full flex-col justify-between overflow-hidden rounded-[16px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] p-4 shadow-[var(--oreo-shadow-default)]",
+        "relative flex w-full flex-col justify-between overflow-hidden rounded-[var(--oreo-radius-lg)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-elevated)] p-4 shadow-[var(--oreo-shadow-default)]",
         ratioClasses[aspectRatio],
         className
       )}

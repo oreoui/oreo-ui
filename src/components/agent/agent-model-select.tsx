@@ -27,7 +27,7 @@ export function AgentModelSelect({ name, logoSrc, disabled = false, onOpen, clas
       aria-haspopup="listbox"
       onClick={onOpen}
       className={cn(
-        "inline-flex h-[32px] oreo-clickable select-none items-center gap-1 rounded-[8px] px-2 py-2 text-[14px] leading-[1.43] text-[var(--oreo-text-primary)] transition-colors",
+        "inline-flex h-[32px] oreo-clickable select-none items-center gap-1 rounded-[var(--oreo-radius-sm)] px-2 py-2 text-[14px] leading-[1.43] text-[var(--oreo-text-primary)] transition-colors",
         !disabled && "hover:bg-[var(--oreo-interaction-hover)] active:bg-[var(--oreo-interaction-press)]",
         disabled && "opacity-30",
         "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",

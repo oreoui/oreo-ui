@@ -41,7 +41,7 @@ export function Tag({ palette: tone = "default", leadingIcon, onRemove, removeLa
   return (
     <span
       className={cn(
-        "inline-flex h-[24px] min-w-[24px] select-none items-center justify-center gap-[2px] whitespace-nowrap rounded-[8px] text-[12px] font-semibold leading-[1.33]",
+        "inline-flex h-[24px] min-w-[24px] select-none items-center justify-center gap-[2px] whitespace-nowrap rounded-[var(--oreo-radius-sm)] text-[12px] font-semibold leading-[1.33]",
         leadingIcon ? "py-[2px] pl-[6px]" : "py-[2px] pl-[8px]",
         onRemove ? "pr-0" : "pr-[8px]",
         palette[tone],

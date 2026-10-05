@@ -12,7 +12,7 @@ import { cn } from "@/lib/cn"
  * Selected swaps the hairline border for a 1px near-black border.
  */
 const chipVariants = cva(
-  "inline-flex h-[36px] oreo-clickable shrink-0 select-none items-center gap-[6px] whitespace-nowrap rounded-[8px] px-[12px] py-[8px] text-[14px] font-normal leading-[1.43] transition-[background-color,box-shadow,border-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
+  "inline-flex h-[36px] oreo-clickable shrink-0 select-none items-center gap-[6px] whitespace-nowrap rounded-[var(--oreo-radius-sm)] px-[12px] py-[8px] text-[14px] font-normal leading-[1.43] transition-[background-color,box-shadow,border-color] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
   {
     variants: {
       selected: {

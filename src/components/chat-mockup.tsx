@@ -23,7 +23,7 @@ export function ChatMockup() {
       initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.2, 0, 0, 1] }}
-      className="relative w-full max-w-[560px] rounded-[20px] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] p-6 text-[14px] shadow-[var(--oreo-shadow-overlay)]"
+      className="relative w-full max-w-[560px] rounded-[var(--oreo-radius-xl)] border border-[var(--oreo-border-subtle)] bg-[var(--oreo-bg-surface)] p-6 text-[14px] shadow-[var(--oreo-shadow-overlay)]"
     >
       {conversation.map(({ name, role, art, initials, message, align }) => (
         <div key={name} className={`mb-6 flex gap-3 ${align === "end" ? "flex-row-reverse" : ""}`}>
@@ -33,7 +33,7 @@ export function ChatMockup() {
               {name} · {role}
             </div>
             <div
-              className={`inline-block rounded-[12px] px-3.5 py-2 leading-snug ${
+              className={`inline-block rounded-[var(--oreo-radius-md)] px-3.5 py-2 leading-snug ${
                 align === "end" ? "bg-[var(--oreo-palette-purple-bg)] text-[var(--oreo-palette-purple-text)]" : "bg-[var(--oreo-bg-subtle)] text-[var(--oreo-text-primary)]"
               }`}
             >
@@ -44,7 +44,7 @@ export function ChatMockup() {
         </div>
       ))}
 
-      <div className="rounded-[16px] border border-[var(--oreo-border-default)] bg-[var(--oreo-bg-surface)] p-3.5">
+      <div className="rounded-[var(--oreo-radius-lg)] border border-[var(--oreo-border-default)] bg-[var(--oreo-bg-surface)] p-3.5">
         <div className="mb-2 flex items-center gap-2 text-[12px] text-[var(--oreo-text-secondary)]">
           <span>Build with</span>
           <AvatarGroup max={3} size={14}>

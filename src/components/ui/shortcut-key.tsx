@@ -44,7 +44,7 @@ export function ShortcutKey({ keys, className }: ShortcutKeyProps) {
       whileTap={reduceMotion ? undefined : { scale: 0.95 }}
       transition={{ duration: reduceMotion ? 0 : 0.12, ease: [0.2, 0, 0, 1] }}
       className={cn(
-        "inline-flex h-[20px] min-w-[20px] select-none items-center justify-center gap-[1px] rounded-[4px] border-[0.5px] border-[var(--oreo-border-default)] bg-[var(--oreo-bg-surface)] px-[4px] py-[2px] text-[var(--oreo-text-placeholder)]",
+        "inline-flex h-[20px] min-w-[20px] select-none items-center justify-center gap-[1px] rounded-[var(--oreo-radius-xs)] border-[0.5px] border-[var(--oreo-border-default)] bg-[var(--oreo-bg-surface)] px-[4px] py-[2px] text-[var(--oreo-text-placeholder)]",
         className
       )}
     >
