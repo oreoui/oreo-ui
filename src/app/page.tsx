@@ -1,6 +1,7 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
+import Link from "next/link"
 
 import { ChatMockup } from "@/components/chat-mockup"
 import { Avatar } from "@/components/ui/avatar"
@@ -15,7 +16,15 @@ export default function Home() {
       <header className="mx-auto flex w-full max-w-7xl flex-col gap-8">
         <div className="flex w-full items-center justify-between">
           <span className="text-[13px] font-medium uppercase tracking-wider text-[var(--oreo-text-secondary)]">OreoUI</span>
-          <Avatar type="logo" size={40} />
+          <div className="flex items-center gap-3 sm:gap-5">
+            <Link href="/kit" className="text-[13px] text-[var(--oreo-text-secondary)] hover:text-[var(--oreo-text-primary)]">
+              Components
+            </Link>
+            <Link href="/login" className="text-[13px] text-[var(--oreo-text-secondary)] hover:text-[var(--oreo-text-primary)]">
+              Sign in
+            </Link>
+            <Avatar type="logo" size={40} />
+          </div>
         </div>
         <motion.h1
           initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }}
