@@ -1,6 +1,6 @@
 "use client"
 
-import { Eye, EyeOff, Search, X, Check } from "lucide-react"
+import { Eye, EyeOff, Search, X, Check, Minus } from "lucide-react"
 import { motion, useReducedMotion } from "framer-motion"
 import * as React from "react"
 
@@ -84,13 +84,15 @@ export function FormField({
  * Standard Input (Text, Search, Password, Icons)
  * ------------------------------------------------------------------ */
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
   leadingIcon?: React.ReactNode
   trailingIcon?: React.ReactNode
   isSearch?: boolean
   isPassword?: boolean
   onClear?: () => void
   error?: boolean
+  /** md is a 44px field with 16px type so mobile browsers do not zoom on focus. */
+  size?: "sm" | "md"
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -104,6 +106,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       isPassword = false,
       onClear,
       error: errorProp,
+      size = "sm",
       disabled,
       value,
       onChange,
@@ -144,7 +147,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             fieldContext ? (hasError ? fieldContext.errorId : fieldContext.descriptionId) : undefined
           }
           className={cn(
-            "flex h-[36px] w-full rounded-[8px] border bg-[var(--oreo-bg-surface)] px-3 cursor-text text-[14px] leading-[1.43] text-[var(--oreo-text-primary)] transition-colors placeholder:text-[var(--oreo-text-placeholder)]",
+            "flex w-full rounded-[var(--oreo-radius-sm)] border bg-[var(--oreo-bg-surface)] px-3 cursor-text leading-[1.43] text-[var(--oreo-text-primary)] transition-colors placeholder:text-[var(--oreo-text-placeholder)]",
+            size === "md" ? "h-11 text-[16px]" : "h-[36px] text-[14px]",
             "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
             "disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-[var(--oreo-bg-elevated)] read-only:cursor-text read-only:bg-[var(--oreo-bg-elevated)]",
             leadingIcon || isSearch ? "pl-9" : "pl-3",
@@ -221,7 +225,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             fieldContext ? (hasError ? fieldContext.errorId : fieldContext.descriptionId) : undefined
           }
           className={cn(
-            "flex min-h-[80px] w-full rounded-[8px] border bg-[var(--oreo-bg-surface)] p-3 cursor-text text-[14px] leading-[1.43] text-[var(--oreo-text-primary)] transition-colors placeholder:text-[var(--oreo-text-placeholder)]",
+            "flex min-h-[80px] w-full rounded-[var(--oreo-radius-sm)] border bg-[var(--oreo-bg-surface)] p-3 cursor-text text-[14px] leading-[1.43] text-[var(--oreo-text-primary)] transition-colors placeholder:text-[var(--oreo-text-placeholder)]",
             "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--oreo-border-focus)]",
             "disabled:cursor-not-allowed disabled:opacity-30 disabled:bg-[var(--oreo-bg-elevated)]",
             hasError
@@ -256,6 +260,7 @@ export interface SwitchProps {
   disabled?: boolean
   id?: string
   label?: string
+  description?: string
   className?: string
 }
 
@@ -266,6 +271,7 @@ export function Switch({
   disabled = false,
   id,
   label,
+  description,
   className,
 }: SwitchProps) {
   const [uncontrolledChecked, setUncontrolledChecked] = React.useState(defaultChecked)
@@ -287,7 +293,7 @@ export function Switch({
       htmlFor={inputId}
       data-disabled={disabled || undefined}
       className={cn(
-        "inline-flex min-h-[24px] oreo-clickable items-center gap-2.5",
+        description ? "inline-flex min-h-[24px] oreo-clickable items-start gap-2.5" : "inline-flex min-h-[24px] oreo-clickable items-center gap-2.5",
         className
       )}
     >
@@ -317,8 +323,9 @@ export function Switch({
       </span>
 
       {label && (
-        <span className={cn("text-[14px] leading-none select-none", disabled ? "opacity-30" : "text-[var(--oreo-text-primary)]")}>
-          {label}
+        <span className={cn("min-w-0 select-none", disabled && "opacity-30")}>
+          <span className="block text-[14px] leading-snug text-[var(--oreo-text-primary)]">{label}</span>
+          {description ? <span className="mt-0.5 block text-[12px] leading-[1.4] text-[var(--oreo-text-secondary)]">{description}</span> : null}
         </span>
       )}
     </label>
@@ -333,9 +340,11 @@ export interface CheckboxProps {
   checked?: boolean
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean) => void
+  indeterminate?: boolean
   disabled?: boolean
   id?: string
   label?: string
+  description?: string
   className?: string
 }
 
@@ -343,9 +352,11 @@ export function Checkbox({
   checked: controlledChecked,
   defaultChecked = false,
   onCheckedChange,
+  indeterminate = false,
   disabled = false,
   id,
   label,
+  description,
   className,
 }: CheckboxProps) {
   const [uncontrolledChecked, setUncontrolledChecked] = React.useState(defaultChecked)
@@ -353,6 +364,12 @@ export function Checkbox({
   const checked = isControlled ? controlledChecked : uncontrolledChecked
   const generatedId = React.useId()
   const inputId = id ?? generatedId
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const reduceMotion = useReducedMotion()
+
+  React.useEffect(() => {
+    if (inputRef.current) inputRef.current.indeterminate = indeterminate
+  }, [indeterminate])
 
   function handleChange(next: boolean) {
     if (!isControlled) setUncontrolledChecked(next)
@@ -364,11 +381,12 @@ export function Checkbox({
       htmlFor={inputId}
       data-disabled={disabled || undefined}
       className={cn(
-        "inline-flex min-h-[24px] oreo-clickable items-center gap-2",
+        description ? "inline-flex min-h-[24px] oreo-clickable items-start gap-2" : "inline-flex min-h-[24px] oreo-clickable items-center gap-2",
         className
       )}
     >
       <input
+        ref={inputRef}
         id={inputId}
         type="checkbox"
         checked={checked}
@@ -379,20 +397,27 @@ export function Checkbox({
       <span
         aria-hidden="true"
         className={cn(
-          "grid size-[18px] shrink-0 place-items-center rounded-[4px] border transition-colors",
+          "grid size-[18px] shrink-0 place-items-center rounded-[var(--oreo-radius-xs)] border transition-colors",
           "peer-focus-visible:outline-none peer-focus-visible:ring-1 peer-focus-visible:ring-[var(--oreo-border-focus)]",
           "peer-disabled:opacity-30",
-          checked
+          checked || indeterminate
             ? "border-[var(--oreo-bg-inverse)] bg-[var(--oreo-bg-inverse)] text-[var(--oreo-text-on-inverse)]"
             : "border-[var(--oreo-border-default)] bg-[var(--oreo-bg-surface)]"
         )}
       >
-        {checked && <Check size={12} strokeWidth={3} />}
+        {indeterminate ? (
+          <Minus size={12} strokeWidth={3} />
+        ) : checked ? (
+          <motion.span initial={{ scale: reduceMotion ? 1 : 0.6 }} animate={{ scale: 1 }}>
+            <Check size={12} strokeWidth={3} />
+          </motion.span>
+        ) : null}
       </span>
 
       {label && (
-        <span className={cn("text-[14px] leading-none select-none", disabled ? "opacity-30" : "text-[var(--oreo-text-primary)]")}>
-          {label}
+        <span className={cn("min-w-0 select-none", disabled && "opacity-30")}>
+          <span className="block text-[14px] leading-snug text-[var(--oreo-text-primary)]">{label}</span>
+          {description ? <span className="mt-0.5 block text-[12px] leading-[1.4] text-[var(--oreo-text-secondary)]">{description}</span> : null}
         </span>
       )}
     </label>
